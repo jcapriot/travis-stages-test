@@ -3,16 +3,21 @@ language: python
 python:
   - 3.6
 
- cache:
-    directories:
-      - /home/travis/miniconda/
-      - /home/travis/anaconda/
+cache:
+  directories:
+    - /home/travis/miniconda/
+    - /home/travis/anaconda/
+
 jobs:
   include:
     - stage: build
       script: ./ci/build.sh
+
     - stage: test
       name: derivs
-      script: python --version
+      script:
+        - export PATH=/home/travis/anaconda/bin:/home/travis/miniconda/bin:$PATH
+        - python test_script.py tests/em/tdem
+
     - stage: deploy
       script: ./ci/deploy_pypi.sh
