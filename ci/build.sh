@@ -9,4 +9,4 @@ conda update --yes conda
 
 conda install --quiet --yes pip python=$TRAVIS_PYTHON_VERSION numpy scipy matplotlib cython ipython h5py;
 #pip install -r requirements_dev.txt
-conda install -c conda-forge simpeg
+conda install --yes -c conda-forge simpeg

@@ -1,9 +1,5 @@
 language: python
 
-python:
-  - 3.6
-  - 3.7
-
 cache:
   directories:
     - /home/travis/miniconda/
@@ -17,6 +13,9 @@ jobs:
   include:
     - stage: build
       script: ./ci/build.sh
+      python:
+        - 3.6
+        - 3.7
 
     - stage: test
       name: derivs
@@ -24,6 +23,10 @@ jobs:
         - export PATH=/home/travis/miniconda/bin:$PATH
         - python --version
         - python test_script.py tests/em/tdem
+      python:
+        - 3.6
+        - 3.7
 
     - stage: deploy
       script: ./ci/deploy_pypi.sh
+      python: 3.6
