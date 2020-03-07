@@ -7,35 +7,22 @@ python:
     directories:
       - /home/travis/miniconda/
       - /home/travis/anaconda/
-
-env:
-  - TEST_DIR=tests/em/fdem/inverse/derivs
-  - TEST_DIR=tests/em/tdem
-  - TEST_DIR="tests/em/static tests/seis tests/base tests/utils"
-  - TEST_DIR=tests/flow
-  - TEST_DIR="tests/em/nsem/forward tests/em/nsem/inversion"
-  - TEST_DIR=tests/em/fdem/inverse/adjoint
-  - TEST_DIR=tests/em/fdem/forward
-  - TEST_DIR=tests/em/vrm
-  - TEST_DIR=tests/pf
-  - TEST_DIR=tests/docs
-
-stages:
-  - build
-  - test
-  - name: deploy
-    if: branch = master
-
 jobs:
   include:
     - stage: build
       script: ./ci/build.sh
 
     - stage: test
-      name: $TEST_DIR
+      name: derivs
       script:
         - export PATH=/home/travis/anaconda/bin:/home/travis/miniconda/bin:$PATH
-        - python test_script.py $TEST_DIR
+        - python test_script.py tests/em/fdem/inverse/derivs
+
+    - stage: test
+      name: derivs
+      script:
+        - export PATH=/home/travis/anaconda/bin:/home/travis/miniconda/bin:$PATH
+        - python test_script.py tests/em/tdem
 
     - stage: deploy
       script: ./ci/deploy_pypi.sh
