@@ -18,7 +18,13 @@ env:
   - TEST_DIR=tests/em/fdem/forward
   - TEST_DIR=tests/em/vrm
   - TEST_DIR=tests/pf
-  - TEST_DIR=tests/docs;
+  - TEST_DIR=tests/docs
+
+stages:
+  - build
+  - test
+  - name: deploy
+    if: branch = master
 
 jobs:
   include:
