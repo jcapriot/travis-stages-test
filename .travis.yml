@@ -8,6 +8,11 @@ cache:
   directories:
     - /home/travis/miniconda/
 
+stages:
+  - build
+  - test
+  - deploy
+
 jobs:
   include:
     - stage: build
