@@ -2,11 +2,11 @@ language: python
 
 python:
   - 3.6
+  - 3.7
 
 cache:
   directories:
     - /home/travis/miniconda/
-    - /home/travis/anaconda/
 
 jobs:
   include:
@@ -16,7 +16,7 @@ jobs:
     - stage: test
       name: derivs
       script:
-        - export PATH=/home/travis/anaconda/bin:/home/travis/miniconda/bin:$PATH
+        - export PATH=/home/travis/miniconda/bin:$PATH
         - python --version
         - python test_script.py tests/em/tdem
 
