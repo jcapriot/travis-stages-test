@@ -11,18 +11,10 @@ jobs:
   include:
     - stage: build
       script: ./ci/build.sh
-
     - stage: test
       name: derivs
       script:
         - export PATH=/home/travis/anaconda/bin:/home/travis/miniconda/bin:$PATH
         - python test_script.py tests/em/fdem/inverse/derivs
-
-    - stage: test
-      name: derivs
-      script:
-        - export PATH=/home/travis/anaconda/bin:/home/travis/miniconda/bin:$PATH
-        - python test_script.py tests/em/tdem
-
     - stage: deploy
       script: ./ci/deploy_pypi.sh
